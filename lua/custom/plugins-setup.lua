@@ -14,7 +14,7 @@ local packer_bootstrap = ensure_packer() -- true if packer was installed
 vim.cmd [[
   augroup packer_user_config
     autocmd!
-    autocmd BufWritePost plugins-setup.lua source <afile> | PackerSync
+    autocmd BufWritePost plugins-setup.lua source <afile> | PackerCompile
   augroup end
 ]]
 
@@ -27,6 +27,8 @@ return packer.startup(function(use)
   -- list of plugins to install
   use 'wbthomason/packer.nvim'
   use 'bluz71/vim-nightfly-guicolors' -- prefered color scheme
+
+  use 'szw/vim-maximizer' -- Maximizes and restores current window
 
   if packer_bootstrap then
     require('packer').sync()
