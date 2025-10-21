@@ -8,6 +8,6 @@ return {
   },
   'jose-elias-alvarez/typescript.nvim',
   'onsails/lspkind.nvim',
-
+  'nvim-pack/nvim-spectre', -- For global search and replace
   require 'custom/plugins/gitsigns', -- adds gitsigns recommend keymaps
 }
