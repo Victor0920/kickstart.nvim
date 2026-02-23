@@ -14,10 +14,6 @@ keymap.set('n', '<leader>sv', '<C-w>v', { desc = '[s]plit window [v]ertically' }
 keymap.set('n', '<leader>sh', '<C-w>s', { desc = '[s]plit window [h]orizontally' })
 keymap.set('n', '<leader>se', '<C-w>=', { desc = '[s]plit windows [e]qual width' })
 keymap.set('n', '<leader>sx', ':close<CR>', { desc = 'close current split window' })
--- keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
--- keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
--- keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
--- keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 keymap.set('n', '<leader>to', ':tabnew<CR>', { desc = 'Open current tab' })
 keymap.set('n', '<leader>tx', ':tabclose<CR>', { desc = 'Close current tab' })
@@ -32,12 +28,19 @@ keymap.set('n', '<leader>sw', '<cmd>lua require("spectre").open_visual({select_w
 keymap.set('v', '<leader>sw', '<esc><cmd>lua require("spectre").open_visual()<CR>', { desc = 'Search current word' })
 keymap.set('n', '<leader>sp', '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', { desc = 'Search on current file' })
 
+-- neorg (for note-taking)
+keymap.set('n', '<leader>ni', ':Neorg index<CR>', { desc = 'Go to Neorg index file' })
+keymap.set('n', '<leader>nr', ':Neorg return<CR>', { desc = 'Return to code' })
+
 -- custom
-keymap.set('i', 'clg<Tab>', 'console.log();<Left><Left>', { desc = 'Expand clg to console.log() with cursor in parentheses' })
+keymap.set('i', 'clgq', 'console.log();<Left><Left>', { desc = 'Expand clg to console.log() with cursor in parentheses' })
 keymap.set('n', '<leader>clg<Tab>', 'oconsole.log();<Left><Left>', { desc = 'Expand clg to console.log() with cursor in parentheses' })
 keymap.set('n', 'yd', ':%y<CR>', { desc = 'Yank whole document' })
+keymap.set('n', 'sd', 'ggVGs', { desc = 'Substitute whole document' })
 keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'move selected lines up' })
 keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'move selected lines down' })
 keymap.set('v', '<', '<gv', { desc = 'add tab' })
 keymap.set('v', '>', '>gv', { desc = 'remove tab' })
 keymap.set('n', '<leader>vf', 'vaF', { desc = 'Visually select around function' })
+keymap.set('n', '<A-o>', ':bprev<CR>', { desc = 'Previous Buffer' })
+keymap.set('n', '<A-i>', ':bnext<CR>', { desc = 'Next Buffer' })
