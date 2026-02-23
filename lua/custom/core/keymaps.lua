@@ -28,6 +28,10 @@ keymap.set('n', '<leader>sw', '<cmd>lua require("spectre").open_visual({select_w
 keymap.set('v', '<leader>sw', '<esc><cmd>lua require("spectre").open_visual()<CR>', { desc = 'Search current word' })
 keymap.set('n', '<leader>sp', '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', { desc = 'Search on current file' })
 
+-- neorg (for note-taking)
+keymap.set('n', '<leader>ni', ':Neorg index<CR>', { desc = 'Go to Neorg index file' })
+keymap.set('n', '<leader>nr', ':Neorg return<CR>', { desc = 'Return to code' })
+
 -- custom
 keymap.set('i', 'clgq', 'console.log();<Left><Left>', { desc = 'Expand clg to console.log() with cursor in parentheses' })
 keymap.set('n', '<leader>clg<Tab>', 'oconsole.log();<Left><Left>', { desc = 'Expand clg to console.log() with cursor in parentheses' })
@@ -38,3 +42,5 @@ keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'move selected lines down' })
 keymap.set('v', '<', '<gv', { desc = 'add tab' })
 keymap.set('v', '>', '>gv', { desc = 'remove tab' })
 keymap.set('n', '<leader>vf', 'vaF', { desc = 'Visually select around function' })
+keymap.set('n', '<A-o>', ':bprev<CR>', { desc = 'Previous Buffer' })
+keymap.set('n', '<A-i>', ':bnext<CR>', { desc = 'Next Buffer' })
