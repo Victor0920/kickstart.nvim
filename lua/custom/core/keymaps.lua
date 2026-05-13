@@ -42,5 +42,7 @@ keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'move selected lines down' })
 keymap.set('v', '<', '<gv', { desc = 'add tab' })
 keymap.set('v', '>', '>gv', { desc = 'remove tab' })
 keymap.set('n', '<leader>vf', 'vaF', { desc = 'Visually select around function' })
-keymap.set('n', '<A-o>', ':bprev<CR>', { desc = 'Previous Buffer' })
-keymap.set('n', '<A-i>', ':bnext<CR>', { desc = 'Next Buffer' })
+keymap.set('n', '<Esc>o', ':bprev<CR>', { desc = 'Previous Buffer' })
+keymap.set('n', '<Esc>i', ':bnext<CR>', { desc = 'Next Buffer' })
+
+-- run :luafile % to refresh nvim after saving new keymap
