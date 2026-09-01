@@ -116,6 +116,11 @@ require('lazy').setup({
     enabled = true,
     notify = false,
   },
+  -- Let lazy bootstrap its own Lua 5.1 (via hererocks) to build luarocks
+  -- packages like neorg's tree-sitter-norg / tree-sitter-norg-meta parsers.
+  rocks = {
+    hererocks = true,
+  },
 
   { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
@@ -327,6 +332,11 @@ require('lazy').setup({
           'query',
           'vimdoc',
           'c',
+          'ruby',
+          'java',
+          'embedded_template',
+          'norg',
+          'norg_meta',
         },
         incremental_selection = {
           enable = true,

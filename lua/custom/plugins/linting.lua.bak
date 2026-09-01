@@ -4,14 +4,6 @@ return {
   config = function()
     local lint = require 'lint'
 
-    -- Same reasoning as conform: run the project's bundled rubocop so the
-    -- diagnostics you see match the rules that format-on-save can fix.
-    -- Without this you get offenses from stock rubocop defaults that the
-    -- formatter will never correct.
-    lint.linters.rubocop.cmd = 'bundle'
-    table.insert(lint.linters.rubocop.args, 1, 'rubocop')
-    table.insert(lint.linters.rubocop.args, 1, 'exec')
-
     lint.linters_by_ft = {
       javascript = { 'eslint_d' },
       typescript = { 'eslint_d' },
@@ -25,14 +17,9 @@ return {
 
     local lint_augroup = vim.api.nvim_create_augroup('lint', { clear = true })
 
-    -- InsertLeave dropped for ruby: every trigger spawns a Bundler process,
-    -- which makes typing stutter. Save and buffer-enter are enough.
     vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {
       group = lint_augroup,
-      callback = function(args)
-        if vim.bo[args.buf].filetype == 'ruby' and args.event == 'InsertLeave' then
-          return
-        end
+      callback = function()
         lint.try_lint()
       end,
     })

@@ -3,18 +3,12 @@ return {
   event = { 'BufReadPre', 'BufNewFile' },
   config = function()
     local conform = require 'conform'
-    local util = require 'conform.util'
 
     -- Use the project's bundled rubocop (with its plugins like rubocop-rails)
     -- instead of mason's standalone copy, which can't see project gems.
-    -- `cwd` anchors `bundle exec` to the directory holding the Gemfile, so it
-    -- works even when nvim's cwd is somewhere else in the tree.
     conform.formatters.rubocop = {
       command = 'bundle',
       prepend_args = { 'exec', 'rubocop' },
-      cwd = util.root_file { 'Gemfile' },
-      -- Outside a Ruby project there is no Gemfile; skip rather than error.
-      require_cwd = true,
     }
 
     conform.setup {
@@ -38,22 +32,18 @@ return {
         java = { 'google-java-format' },
         sql = { 'sql_formatter' },
       },
-      format_on_save = function(bufnr)
-        return {
-          lsp_format = 'fallback',
-          async = false,
-          -- `bundle exec` pays Bundler's boot cost on every save; 1000ms was
-          -- tight enough that a cold run got killed mid-format.
-          timeout_ms = vim.bo[bufnr].filetype == 'ruby' and 5000 or 1000,
-        }
-      end,
+      format_on_save = {
+        lsp_fallback = true,
+        async = false,
+        timeout_ms = 1000,
+      },
     }
 
     vim.keymap.set({ 'n', 'v' }, '<leader>mp', function()
       conform.format {
-        lsp_format = 'fallback',
+        lsp_fallback = true,
         async = false,
-        timeout_ms = 5000,
+        timeout_ms = 1000,
       }
     end, { desc = 'Format file or range (in visual mode)' })
   end,
