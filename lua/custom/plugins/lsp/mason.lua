@@ -36,6 +36,8 @@ return {
         'emmet_ls',
         'prismals',
         'pyright',
+        'ruby_lsp',
+        'jdtls',
       },
     }
 
@@ -47,6 +49,9 @@ return {
         'black',
         'pylint',
         'eslint_d',
+        'erb-lint',
+        'google-java-format',
+        'sql-formatter',
       },
     }
   end,

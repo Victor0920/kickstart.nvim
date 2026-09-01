@@ -54,6 +54,17 @@ return {
       git = {
         ignore = false,
       },
+      filesystem_watchers = {
+        enable = true,
+        debounce_delay = 50,
+        ignore_dirs = {
+          'node_modules',
+          '.git',
+          '.next',
+          'dist',
+          'build',
+        },
+      },
     }
 
     local keymap = vim.keymap
