@@ -195,12 +195,30 @@ require('lazy').setup({
       require('telescope').setup {
         --  All the info you're looking for is in `:help telescope.setup()`
         defaults = {
+          -- Include hidden files (e.g. .env) in grep, but skip .git internals
+          vimgrep_arguments = {
+            'rg',
+            '--color=never',
+            '--no-heading',
+            '--with-filename',
+            '--line-number',
+            '--column',
+            '--smart-case',
+            '--hidden',
+            '--glob',
+            '!**/.git/*',
+          },
           mappings = {
             i = {
               ['<C-k>'] = require('telescope.actions').move_selection_previous,
               ['<C-j>'] = require('telescope.actions').move_selection_next,
               ['<C-q>'] = require('telescope.actions').send_selected_to_qflist + require('telescope.actions').open_qflist,
             },
+          },
+        },
+        pickers = {
+          find_files = {
+            find_command = { 'rg', '--files', '--hidden', '--glob', '!**/.git/*' },
           },
         },
         extensions = {
